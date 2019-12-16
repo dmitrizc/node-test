@@ -10,7 +10,6 @@ const errorHandler = require('errorhandler');
 const lusca = require('lusca');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const expressStatusMonitor = require('express-status-monitor');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -46,7 +45,6 @@ mongoose.connection.on('error', (err) => {
  */
 app.set('host', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
 app.set('port', process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080);
-app.use(expressStatusMonitor());
 app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
